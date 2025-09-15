@@ -1,0 +1,28 @@
+# Data handling
+pandas
+numpy
+
+# Synthetic data generation
+faker
+
+# NLP & ML
+scikit-learn
+spacy
+nltk
+
+# Deep learning (optional, for BERT later)
+torch
+transformers
+
+# API / Middleware
+fastapi
+uvicorn
+
+# Utilities
+regex
+tqdm
+
+transformers
+datasets
+seqeval
+torch
