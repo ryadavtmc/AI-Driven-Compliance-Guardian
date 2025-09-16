@@ -89,10 +89,7 @@ def align_token_schema(batch, tokenizer, label_names: List[str]):
 # Span schema alignment
 # ----------------------------
 def align_span_schema(batch, tokenizer, label_list: List[str]):
-    texts = batch["text"]
-
-    # ensure list[str]
-    texts = ["" if t is None else str(t) for t in texts]
+    texts = ["" if t is None else str(t) for t in batch["text"]]
 
     tokenized = tokenizer(
         texts,
@@ -120,26 +117,30 @@ def align_span_schema(batch, tokenizer, label_list: List[str]):
 
 
 # ----------------------------
-# Metrics
+# Metrics (fixed to map back IDs -> labels)
 # ----------------------------
-def compute_metrics(eval_pred):
-    logits, labels = eval_pred
-    preds = np.argmax(logits, axis=-1)
-    true_preds, true_labels = [], []
-    for p_row, l_row in zip(preds, labels):
-        cur_p, cur_l = [], []
-        for p, l in zip(p_row, l_row):
-            if l != -100:
-                cur_p.append(p)
-                cur_l.append(l)
-        true_preds.append(cur_p)
-        true_labels.append(cur_l)
+def make_compute_metrics(id2label):
+    def compute_metrics(eval_pred):
+        logits, labels = eval_pred
+        preds = np.argmax(logits, axis=-1)
 
-    return {
-        "precision": precision_score(true_labels, true_preds),
-        "recall": recall_score(true_labels, true_preds),
-        "f1": f1_score(true_labels, true_preds),
-    }
+        true_preds, true_labels = [], []
+        for p_row, l_row in zip(preds, labels):
+            cur_p, cur_l = [], []
+            for p, l in zip(p_row, l_row):
+                if l != -100:
+                    cur_p.append(id2label[p])
+                    cur_l.append(id2label[l])
+            true_preds.append(cur_p)
+            true_labels.append(cur_l)
+
+        return {
+            "precision": precision_score(true_labels, true_preds),
+            "recall": recall_score(true_labels, true_preds),
+            "f1": f1_score(true_labels, true_preds),
+        }
+
+    return compute_metrics
 
 
 # ----------------------------
@@ -194,7 +195,6 @@ def main():
             return align_token_schema(batch, tokenizer, label_list)
 
     else:  # span schema
-        # Collect labels from spans
         uniq = set()
         for ex in train_split.select(range(min(2000, len(train_split)))):
             for s in ex.get("spans", []):
@@ -235,7 +235,7 @@ def main():
         num_train_epochs=args.epochs,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
-        eval_strategy="epoch",  # fixed
+        eval_strategy="epoch",
         save_strategy="epoch",
         learning_rate=args.learning_rate,
         weight_decay=args.weight_decay,
@@ -244,7 +244,8 @@ def main():
         report_to="none",
         load_best_model_at_end=True,
         metric_for_best_model="f1",
-        remove_unused_columns=False,  # critical fix
+        remove_unused_columns=False,
+        save_total_limit=2,  # keep last 2 checkpoints
     )
 
     trainer = Trainer(
@@ -254,10 +255,17 @@ def main():
         eval_dataset=eval_tok,
         tokenizer=tokenizer,
         data_collator=DataCollatorForTokenClassification(tokenizer),
-        compute_metrics=compute_metrics,
+        compute_metrics=make_compute_metrics(id2label),
     )
 
-    trainer.train()
+    # 🔥 Resume training if interrupted
+    last_checkpoint = None
+    if os.path.isdir(args.output_dir):
+        from transformers.trainer_utils import get_last_checkpoint
+
+        last_checkpoint = get_last_checkpoint(args.output_dir)
+    trainer.train(resume_from_checkpoint=last_checkpoint)
+
     trainer.save_model(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
     print("Saved model to:", args.output_dir)
@@ -266,6 +274,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 """ 

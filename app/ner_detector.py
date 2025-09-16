@@ -93,7 +93,7 @@ if __name__ == "__main__":
     # Simple smoke test (requires a trained model at models/pii_ner_distilbert)
     try:
         ner = PiiNer()
-        txt = "My name is John Smith, my email is john.smith@example.com and SSN is 123-45-6789."
+        txt = "I am John jha, my email is john.smith@example.com and  is 123-45-6789."
         ents = ner.predict(txt, score_threshold=0.3)
         for e in ents:
             print(e)

@@ -180,13 +180,29 @@ Data → Detection Engine (Regex + ML) → Middleware API → LLM
 	•	Technology: Python regex package.
 	•	Role: Baseline system + part of hybrid model.
 
-⸻
+⸻ DONE --------
 
 2. Traditional ML Classifier (Text Classification)
 	•	Purpose: Detect whether a whole prompt is safe or unsafe.
 	•	Models: Logistic Regression, Random Forest, XGBoost.
 	•	Features: TF-IDF, n-grams.
 	•	Role: Lightweight, explainable, easy to benchmark.
+
+Eval metrics: {'eval_loss': 0.023990441113710403, 'eval_precision': 0.9509093221416762, 'eval_recall': 0.9211956940230699, 'eval_f1': 0.9358167040841071, 'eval_runtime': 30.6799, 'eval_samples_per_second': 162.973, 'eval_steps_per_second': 20.372, 'epoch': 2.0}
+
+Here’s what your final metrics mean:
+
+Train Loss: 0.016 → your model learned the task very well.
+
+Eval Loss: 0.024 → close to train loss, so no serious overfitting.
+
+Precision: 95.1% → when the model predicts a PII/PHI entity, it’s right ~95% of the time.
+
+Recall: 92.1% → it catches ~92% of all true entities.
+
+F1 Score: 93.6% → strong balance of precision & recall (anything >90% is excellent for NER).
+
+⚡ Runtime: ~4 hours on CPU/MPS → totally normal for 80k+ steps on DistilBERT without a big GPU.
 
 ⸻
 
