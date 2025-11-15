@@ -36,15 +36,16 @@ seaborn
 matplotlib
 sns
 imbalanced-learn
-fastapi uvicorn
+fastapi
+uvicorn[standard]
 
 streamlit
 openai
 requests
-pysqlcipher3
 streamlit-cookies-manager
 streamlit-extras
-streamlit-option-menu streamlit-router
+streamlit-option-menu
+streamlit-router
 streamlit-shadcn-ui
 streamlit-lottie
 streamlit-mui
