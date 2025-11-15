@@ -1,0 +1,7 @@
+{
+  "model": "/content/drive/MyDrive/Colab Notebooks/NER_models/pii_ner_v3",
+  "samples_evaluated": 1000,
+  "precision": 0.026438070821983656,
+  "recall": 0.05453644025780863,
+  "f1": 0.03561215129768521
+}

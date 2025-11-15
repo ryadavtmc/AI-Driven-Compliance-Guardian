@@ -1,0 +1,54 @@
+# Data handling
+pandas
+numpy==1.26.4
+
+# Synthetic data generation
+faker
+
+# NLP & ML
+scikit-learn
+spacy
+nltk
+
+# Deep learning
+torch>=2.2.0
+transformers>=4.36.0
+datasets
+seqeval
+
+# API / Middleware
+fastapi
+uvicorn
+
+# Utilities
+regex
+tqdm
+
+# Finance / Data sourcing
+sec-edgar-downloader
+
+
+python-dotenv
+tqdm
+openpyxl
+xgboost
+seaborn
+matplotlib
+sns
+imbalanced-learn
+fastapi uvicorn
+
+streamlit
+openai
+requests
+pysqlcipher3
+streamlit-cookies-manager
+streamlit-extras
+streamlit-option-menu streamlit-router
+streamlit-shadcn-ui
+streamlit-lottie
+streamlit-mui
+hydralit_components
+streamlit_elements
+streamlit-aggrid
+streamlit-shadcn-ui
