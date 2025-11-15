@@ -1,0 +1,72 @@
+# ==========================================================
+# Policy Rules for AI-Driven Compliance Guardian
+# ==========================================================
+# Defines rule-based and model-based actions:
+#  - block → immediately deny or redact sensitive content
+#  - mask  → partially hide before storage or transmission
+# ==========================================================
+
+# ----------------------------------------------------------
+# Regex-based Blocking Rules
+# ----------------------------------------------------------
+block_categories:
+  - "Credit Card Number"
+  - "US SSN"
+  - "API Key"
+  - "JWT"
+  - "Database URL (common schemes)"
+  - "Generic Credential Assignment"
+  - "Access Token"
+  - "Bank Account Number"
+  - "Routing Number"
+  - "Private Key"
+  - "Password or Secret Value"
+  - "RSA Token"
+  - "SSH RSA Public Key"
+  - "OpenSSH Key Block"
+  - "Account Number"
+
+# ----------------------------------------------------------
+# Regex-based Masking Rules
+# ----------------------------------------------------------
+mask_categories:
+  - "Email Address"
+  - "US Phone Number"
+  - "International Phone Number"
+  - "Physical Address"
+  - "Person Name"
+  - "IP Address"
+  - "Date of Birth"
+  - "Postal Code"
+  - "Organization Name"
+  - "IPv4 Address"
+
+# ----------------------------------------------------------
+# PII NER Label → Action Mapping
+# ----------------------------------------------------------
+# These keys correspond to BERT label suffixes such as:
+#   B-NAME, I-NAME, B-EMAIL, B-PHONE, B-ADDRESS, B-ID
+# ----------------------------------------------------------
+pii_entity_policy:
+  NAME: mask
+  Email Address: mask
+  EMAIL: mask
+  PHONE: mask
+  ADDRESS: mask
+  ID: block     # IDs (e.g., government or unique identifiers) are riskier
+  DOB: mask
+  ORGANIZATION: mask
+
+# ----------------------------------------------------------
+# Confidence Thresholds
+# ----------------------------------------------------------
+# secret_block: probability from BERT secret classifier
+# ml_unsafe: probability cutoff for ML ensemble
+# regex_confidence: minimum confidence to trigger regex match
+# pii_confidence: threshold for PII masking strength (heuristic)
+# ----------------------------------------------------------
+thresholds:
+  secret_block: 0.70
+  ml_unsafe: 0.65
+  regex_confidence: 0.80
+  pii_confidence: 0.40
