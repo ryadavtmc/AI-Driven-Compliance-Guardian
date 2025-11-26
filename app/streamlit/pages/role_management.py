@@ -1,5 +1,3 @@
-# app/pages/2_🛡️_Role_Management.py
-
 import streamlit as st
 from guardian_compliance_db import get_all_users, update_user_role, delete_user
 from utils.access_control import require_admin

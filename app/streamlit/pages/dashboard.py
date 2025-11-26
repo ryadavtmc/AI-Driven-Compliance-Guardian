@@ -1,5 +1,3 @@
-# app/pages/2_📊_Dashboard.py
-
 from utils.access_control import require_login
 import streamlit as st
 import time

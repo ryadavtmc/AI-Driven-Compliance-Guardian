@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 """
 AI-Driven Compliance Guardian — NER Evaluation (Training-Aligned)
-=================================================================
-✓ Mirrors training tokenization + label assignment exactly
-✓ Fixes BIO vs base-label mismatch
-✓ Avoids re-tokenization misalignment
-✓ Produces consistent F1 scores with training metrics
 """
 
 import os, json, torch, numpy as np, matplotlib.pyplot as plt

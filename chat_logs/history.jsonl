@@ -212,3 +212,5 @@ def register_form():
                         st.warning("⚠️ Email already registered. Please log in.")
                     else:
                         st.error(f"❌ Unexpected error: {e}")
+2025-11-26T02:14:10.822534+00:00 | user=4 | block | [BLOCKED BY POLICY]
+2025-11-26T02:14:22.221574+00:00 | user=4 | allow | So do you remeber me

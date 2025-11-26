@@ -7,10 +7,6 @@ AI-Driven Compliance Guardian API
 Serves the unified inference pipeline (Regex + BERT + PII NER + Hybrid ML)
 as a REST API endpoint using FastAPI.
 
-This version supports:
- - Policy-driven risk handling (via config/policy_rules.yaml)
- - Safe JSON conversion for model outputs
- - Robust import handling for both dev & package execution
 """
 
 import os

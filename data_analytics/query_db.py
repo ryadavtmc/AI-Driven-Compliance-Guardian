@@ -1,7 +1,4 @@
 
-
-# DB_PATH = "compliance_guardian.db"  # or your path if different
-
 import os
 import sqlite3
 
