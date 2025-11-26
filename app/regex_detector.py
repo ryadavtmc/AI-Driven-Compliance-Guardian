@@ -187,12 +187,12 @@ PATTERNS: List[PatternSpec] = [
         severity="high",
         regex=r"ssh-(rsa|ed25519|dss)\s+[A-Za-z0-9+/=]{40,}={0,2}",
     ),
-    PatternSpec(
-        name="Generic Credential Assignment",
-        category="Secret",
-        severity="high",
-        regex=r"(?i)\b(password|pwd|pass|secret|token|api[-_ ]?key)\b\s*[:=]\s*([^\s'\"`]{6,})",
-    ),
+    # PatternSpec(
+    #     name="Generic Credential Assignment",
+    #     category="Secret",
+    #     severity="high",
+    #     regex=r"(?i)\b(password|pwd|pass|secret|token|api[-_ ]?key)\b\s*[:=]\s*([^\s'\"`]{6,})",
+    # ),
     PatternSpec(
         name="RSA Token",
         category="Secret",
@@ -217,8 +217,20 @@ PATTERNS: List[PatternSpec] = [
         name="International Phone Number",
         category="PII",
         severity="medium",
-        regex=r"(?:(?:\+|00)\d{1,3}[\s-]?)?(?:\(?\d{1,4}\)?[\s-]?)?(?:\d[\d\s-]{5,}\d)",
+        # Strict E.164-compatible format (prevents DOB misfires)
+        regex=r"\b\+(?:[1-9]\d{0,2})[\s\-]?(?:\(?\d{1,4}\)?[\s\-]?\d{3,})\b",
     ),
+
+    PatternSpec(
+        name="Date of Birth",
+        category="PII",
+        severity="medium",
+        regex=r"(?<!\d)(?:"
+            r"(?:19|20)\d{2}[-/.](?:0[1-9]|1[0-2])[-/.](?:0[1-9]|[12]\d|3[01])"      # YYYY-MM-DD
+            r"|(?:0[1-9]|1[0-2])[-/.](?:0[1-9]|[12]\d|3[01])[-/.](?:19|20)\d{2}"     # MM-DD-YYYY
+            r"|(?:0[1-9]|[12]\d|3[01])[-/.](?:0[1-9]|1[0-2])[-/.](?:19|20)\d{2}"     # DD-MM-YYYY
+            r")(?!\d)",
+    )
 
 ]
 

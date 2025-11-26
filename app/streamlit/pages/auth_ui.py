@@ -207,7 +207,7 @@ def login_form():
                     verify_url = f"http://localhost:8501/auth_ui?verify={new_token}"
 
                     st.success("✅ A new verification link has been generated!")
-                    st.code(verify_url, language="text")
+                    # st.code(verify_url, language="text")
                 else:
                     st.error("❌ Could not find this email in our database.")
             except Exception as e:
@@ -378,13 +378,5 @@ def auth_gate():
 # ============================================================
 if __name__ == "__main__" or True:
     st.title("🔐 Compliance Guardian Authentication")
-    # Apply global page + navbar CSS
-    # inject_global_styles()
-    # # Render the navbar
-    # render_navbar(namespace="auth")
-    # # Add spacing below navbar so content doesn’t overlap
-    # add_navbar_spacer()
-
     auth_gate()
-
     render_footer()

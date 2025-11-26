@@ -1,13 +1,134 @@
-# ==========================================================
-# Policy Rules for AI-Driven Compliance Guardian
-# ==========================================================
-# Defines rule-based and model-based actions:
-#  - block → immediately deny or redact sensitive content
-#  - mask  → partially hide before storage or transmission
-# ==========================================================
+# # ==========================================================
+# # Policy Rules for AI-Driven Compliance Guardian
+# # ==========================================================
+# # Defines rule-based and model-based actions:
+# #  - block → immediately deny or redact sensitive content
+# #  - mask  → partially hide before storage or transmission
+# # ==========================================================
 
 # ----------------------------------------------------------
 # Regex-based Blocking Rules
+# ----------------------------------------------------------
+# block_categories:
+#   - "Credit Card Number"
+#   - "US SSN"
+#   - "API Key"
+#   - "JWT"
+#   - "Database URL (common schemes)"
+#   - "Generic Credential Assignment"
+#   - "Access Token"
+#   - "Bank Account Number"
+#   - "Routing Number"
+#   - "Private Key"
+#   - "Password or Secret Value"
+#   - "RSA Token"
+#   - "SSH RSA Public Key"
+#   - "OpenSSH Key Block"
+#   - "Account Number"
+
+# # ----------------------------------------------------------
+# # Regex-based Masking Rules
+# # ----------------------------------------------------------
+# mask_categories:
+#   - "Email Address"
+#   - "US Phone Number"
+#   - "International Phone Number"
+#   - "Physical Address"
+#   - "Person Name"
+#   - "IP Address"
+#   - "Date of Birth"
+#   - "Postal Code"
+#   - "Organization Name"
+#   - "IPv4 Address"
+#   - "B-EMAIL"
+
+# # ----------------------------------------------------------
+# # PII NER Label → Action Mapping
+# # ----------------------------------------------------------
+# # These keys correspond to BERT label suffixes such as:
+# #   B-NAME, I-NAME, B-EMAIL, B-PHONE, B-ADDRESS, B-ID
+# # ----------------------------------------------------------
+# pii_entity_policy:
+#   NAME: mask
+#   Email Address: mask
+#   EMAIL: mask
+#   PHONE: mask
+#   ADDRESS: mask
+#   ID: block     # IDs (e.g., government or unique identifiers) are riskier
+#   DOB: mask
+#   ORGANIZATION: mask
+
+# # ----------------------------------------------------------
+# # Confidence Thresholds
+# # ----------------------------------------------------------
+# # secret_block: probability from BERT secret classifier
+# # ml_unsafe: probability cutoff for ML ensemble
+# # regex_confidence: minimum confidence to trigger regex match
+# # pii_confidence: threshold for PII masking strength (heuristic)
+# # ----------------------------------------------------------
+# thresholds:
+#   secret_block: 0.70
+#   ml_unsafe: 0.65
+#   regex_confidence: 0.80
+#   pii_confidence: 0.40
+
+
+
+
+
+
+
+
+
+# mask_categories:
+#   - "Email Address"
+#   - "Email"
+#   - "EMAIL"
+#   - "E-mail"
+#   - "B-EMAIL"
+#   - "I-EMAIL"
+#   - "US Phone Number"
+#   - "International Phone Number"
+#   - "Physical Address"
+#   - "Person Name"
+#   - "IP Address"
+#   - "IPv4 Address"
+#   - "Date of Birth"
+#   - "Postal Code"
+#   - "Organization Name"
+
+# pii_entity_policy:
+#   NAME: mask
+#   Email Address: mask
+#   EMAIL_ADDRESS: mask
+#   Email: mask
+#   EMAIL: mask
+#   PHONE: mask
+#   ADDRESS: mask
+#   ID: block
+#   DOB: mask
+#   ORGANIZATION: mask
+
+# thresholds:
+#   secret_block: 0.70
+#   ml_unsafe: 0.80          # raised
+#   regex_confidence: 0.60   # lowered
+#   pii_confidence: 0.40
+
+
+
+
+
+
+# ==========================================================
+# Policy Rules for AI-Driven Compliance Guardian
+# Actions:
+#   block → deny or quarantine truly sensitive/secret material
+#   mask  → redact before storage/transmission (LLM-safe)
+# ==========================================================
+
+# ----------------------------------------------------------
+# Regex-based Blocking Rules (hard block)
 # ----------------------------------------------------------
 block_categories:
   - "Credit Card Number"
@@ -27,46 +148,47 @@ block_categories:
   - "Account Number"
 
 # ----------------------------------------------------------
-# Regex-based Masking Rules
+# Regex-based Masking Rules (safe redaction)
 # ----------------------------------------------------------
 mask_categories:
   - "Email Address"
+  - "Email"
+  - "EMAIL"
+  - "E-mail"
+  - "B-EMAIL"
+  - "I-EMAIL"
   - "US Phone Number"
   - "International Phone Number"
   - "Physical Address"
   - "Person Name"
   - "IP Address"
+  - "IPv4 Address"
   - "Date of Birth"
   - "Postal Code"
   - "Organization Name"
-  - "IPv4 Address"
+  - "Date of Birth"
 
 # ----------------------------------------------------------
 # PII NER Label → Action Mapping
-# ----------------------------------------------------------
-# These keys correspond to BERT label suffixes such as:
-#   B-NAME, I-NAME, B-EMAIL, B-PHONE, B-ADDRESS, B-ID
+# (normalized, no tokenizer subword fragments)
 # ----------------------------------------------------------
 pii_entity_policy:
   NAME: mask
   Email Address: mask
+  EMAIL_ADDRESS: mask
+  Email: mask
   EMAIL: mask
   PHONE: mask
   ADDRESS: mask
-  ID: block     # IDs (e.g., government or unique identifiers) are riskier
+  ID: block          # government/unique IDs → block
   DOB: mask
   ORGANIZATION: mask
 
 # ----------------------------------------------------------
-# Confidence Thresholds
-# ----------------------------------------------------------
-# secret_block: probability from BERT secret classifier
-# ml_unsafe: probability cutoff for ML ensemble
-# regex_confidence: minimum confidence to trigger regex match
-# pii_confidence: threshold for PII masking strength (heuristic)
+# Decision Thresholds
 # ----------------------------------------------------------
 thresholds:
-  secret_block: 0.70
-  ml_unsafe: 0.65
-  regex_confidence: 0.80
-  pii_confidence: 0.40
+  secret_block: 0.70     # BERT secret classifier block cutoff
+  ml_unsafe: 0.80        # ML ensemble unsafe cutoff (raised to avoid over-block)
+  regex_confidence: 0.60 # minimum regex confidence to trigger
+  pii_confidence: 0.40   # NER masking strength heuristic

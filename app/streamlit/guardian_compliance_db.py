@@ -788,7 +788,42 @@ def log_audit(user_id, event_type, data=None):
         ))
         conn.commit()
 
+from streamlit.web.server.websocket_headers import _get_websocket_headers
 
+def get_client_info():
+    # Streamlit >=1.32
+    headers = getattr(st.context, "headers", {}) or {}
+
+    # Normalize keys for case-insensitive lookups
+    h = {k.lower(): v for k, v in headers.items()}
+
+    # Try common proxy/CDN headers first
+    ip = (
+        h.get("x-forwarded-for") or
+        h.get("cf-connecting-ip") or
+        h.get("true-client-ip") or
+        h.get("x-real-ip") or
+        h.get("x-client-ip") or
+        h.get("fastly-client-ip") or
+        h.get("x-cluster-client-ip") or
+        h.get("remote-addr") or
+        h.get("remote-address")
+    )
+
+    # Parse RFC 7239 Forwarded header: e.g. 'for=203.0.113.195; proto=https; by=...'
+    fwd = h.get("forwarded")
+    if not ip and fwd:
+        # pick the first for= value
+        for_part = next((p for p in fwd.split(";") if p.strip().lower().startswith("for=")), None)
+        if for_part:
+            ip = for_part.split("=", 1)[1].strip().strip('"').strip("[]")  # remove quotes/brackets
+
+    # X-Forwarded-For can be "client, proxy1, proxy2" -> take first
+    if isinstance(ip, str) and "," in ip:
+        ip = ip.split(",")[0].strip()
+
+    ua = h.get("user-agent", "unknown")
+    return (ip or "unknown"), ua
 
 def log_policy_event(user_id, policy_id, action, findings=None,
                      ip_address=None, user_agent=None, raw_content=None):
@@ -805,8 +840,11 @@ def log_policy_event(user_id, policy_id, action, findings=None,
     - raw_content: str → original text of the message
     """
     findings = findings or []
-    ip_address = ip_address or st.session_state.get("client_ip", "unknown")
-    user_agent = user_agent or st.session_state.get("user_agent", "unknown")
+    # ip_address = ip_address or st.session_state.get("client_ip", "unknown")
+    # user_agent = user_agent or st.session_state.get("user_agent", "unknown")
+    ip_address, user_agent = get_client_info()
+    st.session_state["client_ip"] = ip_address
+    st.session_state["user_agent"] = user_agent
     raw_content = raw_content or ""
 
     with db() as conn:

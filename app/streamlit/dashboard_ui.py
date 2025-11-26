@@ -51,13 +51,10 @@ def dashboard_home(user):
             st.switch_page("pages/chat.py")
     with col2:
         if st.button("📋 View Policy Logs", key="btn_policy_logs"):
-            st.session_state["nav_page"] = "Policy Events"
-            st.experimental_rerun()
+            st.switch_page("pages/policy_logs.py")
     with col3:
         if st.button("🕵️ View Audit Logs", key="btn_audit_logs"):
-            st.session_state["nav_page"] = "Audit Logs"
-            st.experimental_rerun()
-
+            st.switch_page("pages/audit_logs.py")
 # ------------------------------------------------------------
 # PLACEHOLDER PAGES
 # ------------------------------------------------------------

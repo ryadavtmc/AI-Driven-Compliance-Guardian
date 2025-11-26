@@ -49,6 +49,6 @@ def delete_table(table_name: str):
 
 
 if __name__ == "__main__":
-    # print(query_table("policy_events"))
+    print(query_table("policy_events"))
     # delete_table("policy_events")
-    promote_user_to_admin(1)
+    promote_user_to_admin(2)

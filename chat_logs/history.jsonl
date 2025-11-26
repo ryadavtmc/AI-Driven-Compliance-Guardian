@@ -1,0 +1,214 @@
+2025-11-15T04:11:33.725487+00:00 | user=1 | allow | Hello
+2025-11-15T04:12:38.679111+00:00 | user=1 | allow | Hello
+2025-11-15T08:04:32.128533+00:00 | user=1 | allow | Hello
+2025-11-15T08:05:19.029907+00:00 | user=1 | allow | Do you now access
+2025-11-15T08:30:09.386590+00:00 | user=1 | block | “John Smith’s email is john.smith@example.com and his social security number is 123-45-6789.”
+2025-11-15T08:30:27.591175+00:00 | user=1 | mask | ohn Smith’s email is john.smith@example.com
+2025-11-15T08:32:00.840518+00:00 | user=1 | mask | john Smith’s email is john.smith@example.com
+2025-11-15T08:32:07.337693+00:00 | user=1 | allow | Hello
+2025-11-15T08:33:13.997331+00:00 | user=1 | allow | Hello
+2025-11-15T08:33:43.582269+00:00 | user=1 | mask | john Smith’s email is john.smith@example.com
+2025-11-15T08:35:21.210415+00:00 | user=1 | block | My ssn is 232-32-3433
+2025-11-15T08:36:11.466622+00:00 | user=1 | block | Emily Johnson’s credit card number 4111-1111-1111-1111 expires 08/25.
+2025-11-15T08:36:47.803230+00:00 | user=1 | allow | All of these include identifiable personal information, such as names, addresses, emails, phone numbers, SSN, credit cards, or passport numbers.
+2025-11-15T08:36:50.897495+00:00 | user=1 | block | Contact Michael Brown at michael.brown@company.com for account-related inquiries
+2025-11-15T08:39:34.323145+00:00 | user=1 | block | 
+Contact Michael Brown at michael.brown@company.com for account-related inquiries
+2025-11-15T08:53:11.234424+00:00 | user=1 | mask | Michael O’Connor submitted his passport number P987654321 for international travel.
+2025-11-15T09:01:46.535568+00:00 | user=1 | allow | Hello
+2025-11-15T09:01:58.861558+00:00 | user=1 | mask | Michael O’Connor submitted his passport number P987654321 for international travel.
+2025-11-15T09:02:24.695622+00:00 | user=1 | mask | Contact number for Ahmed Khan is +1-202-555-0187 for verification.
+2025-11-15T09:02:42.992974+00:00 | user=1 | mask | Send the delivery confirmation to Linda White at linda.white@example.com
+2025-11-15T09:03:10.898843+00:00 | user=1 | mask | Emily Davis lives at 221B Baker Street, London.
+2025-11-25T03:22:13.581537+00:00 | user=guest | allow | Hello
+2025-11-25T03:24:17.705931+00:00 | user=guest | allow | Hello
+2025-11-25T03:30:14.570846+00:00 | user=guest | allow | Hello
+2025-11-25T03:33:26.827314+00:00 | user=guest | allow | Hello
+2025-11-25T03:35:06.278992+00:00 | user=guest | allow | Hello
+2025-11-25T03:35:58.807961+00:00 | user=guest | allow | Hello My name is something something
+2025-11-25T03:36:20.194241+00:00 | user=guest | allow | can you write me a python code to add two num
+2025-11-25T03:39:30.208713+00:00 | user=2 | block | Hello i live in new york, and my ssn is 123-32-2322
+2025-11-25T03:40:04.556270+00:00 | user=2 | allow | Hello I am Jame, can you help me to learn computer science
+2025-11-25T03:45:33.577308+00:00 | user=1 | allow | Do you understand french ?
+2025-11-25T04:11:08.305568+00:00 | user=2 | allow | Hello
+2025-11-25T04:11:59.711324+00:00 | user=2 | allow | which model are you ?
+2025-11-25T04:15:58.397806+00:00 | user=2 | block | I am applying for software engineering position, can you write a cold email to: example@gmail.com
+2025-11-25T04:17:06.205353+00:00 | user=2 | allow | I am applying for software engineering position, can you write a cold email to: 
+2025-11-25T04:17:27.221845+00:00 | user=2 | allow | company name is US Stock exchange
+2025-11-25T04:17:41.126458+00:00 | user=2 | allow | write an email for software position
+2025-11-25T04:18:06.744072+00:00 | user=2 | allow | I am a cloud engineer
+2025-11-25T04:28:39.372351+00:00 | user=2 | allow | This is Sam, remeber my name
+2025-11-25T04:28:44.977738+00:00 | user=2 | allow | What is my name ?
+2025-11-25T04:29:38.811150+00:00 | user=2 | allow | This is ALex, remember my name?
+2025-11-25T04:29:45.307402+00:00 | user=2 | allow | What is my name ?
+2025-11-25T04:42:59.209436+00:00 | user=guest | allow | Hello
+2025-11-25T04:44:41.136053+00:00 | user=guest | allow | My name is Alvin, remember my name
+2025-11-25T04:44:47.899806+00:00 | user=guest | allow | Do you remember my name ?
+2025-11-25T04:46:07.716685+00:00 | user=guest | allow | Hello
+2025-11-25T04:46:17.364919+00:00 | user=guest | allow | Hello my name is Alvin, remeber it
+2025-11-25T04:46:23.801767+00:00 | user=guest | allow | do you remeber my name ?
+2025-11-25T04:47:00.702514+00:00 | user=guest | allow | d
+2025-11-25T04:47:01.193562+00:00 | user=guest | allow | d
+2025-11-25T04:47:02.088187+00:00 | user=guest | allow | d
+2025-11-25T04:53:02.968037+00:00 | user=guest | block | my ssn is 121-23-2322
+2025-11-25T04:56:25.150389+00:00 | user=guest | allow | Hello 
+2025-11-25T04:56:32.460645+00:00 | user=guest | allow | How you doing
+2025-11-25T04:57:52.234210+00:00 | user=guest | allow | Hello my name is Sam, remeber me
+2025-11-25T04:57:58.167441+00:00 | user=guest | allow | What is my name
+2025-11-25T04:58:08.815853+00:00 | user=guest | allow | I am software engineer,
+2025-11-25T04:58:41.338891+00:00 | user=guest | allow | can you write an email to her, i need a sick leave. my hr name is Diana
+2025-11-25T04:59:32.332752+00:00 | user=guest | mask | Can you re-write, my full name is Sam Alerberto and the date i want to put is 2025-09-11
+2025-11-25T05:00:44.203716+00:00 | user=guest | block | my ssn is 232-34-2222
+2025-11-25T05:00:53.784865+00:00 | user=guest | allow | Hello
+2025-11-25T05:01:29.690425+00:00 | user=guest | block | my email is hellodianna@gmail.com
+2025-11-25T05:01:51.684017+00:00 | user=guest | mask | my dob is 2023-09-22
+2025-11-25T05:02:40.955848+00:00 | user=guest | mask | Hello i want to wish happy birthday to my boss, can you write an email
+His date of birth is 2001-09-14. 
+2025-11-25T05:03:45.316504+00:00 | user=guest | allow | can you add his dob in email
+2025-11-25T05:04:03.977599+00:00 | user=guest | allow | why
+2025-11-25T05:04:08.916671+00:00 | user=guest | allow | what happen
+2025-11-25T05:04:13.833435+00:00 | user=guest | allow | hello
+2025-11-25T05:04:26.356951+00:00 | user=guest | allow | why you saying st.caption(f"Free messages used: {count + 1}/15")
+2025-11-25T05:09:17.853065+00:00 | user=2 | mask | Hello i want to wish happy birthday to my boss, can you write an email
+His date of birth is 2001-09-14.  do not forget to add dob inside an email
+2025-11-25T05:10:18.969254+00:00 | user=2 | block | my ssn is 212-23-2333
+2025-11-25T05:10:23.734139+00:00 | user=2 | allow | what is my ssn
+2025-11-25T05:21:46.615073+00:00 | user=2 | block | my ssn is 123-45-6789
+2025-11-25T05:21:52.463933+00:00 | user=2 | allow | what is my ssn
+2025-11-25T05:22:13.514173+00:00 | user=2 | allow | why i am getting sorry
+2025-11-25T05:22:35.351599+00:00 | user=2 | allow | where did you getting this reponse
+2025-11-25T05:22:57.874933+00:00 | user=2 | block | my email is asdf@gmail.com
+2025-11-25T05:23:04.756177+00:00 | user=2 | allow | what is my email
+2025-11-25T05:24:24.408246+00:00 | user=2 | mask | my address is 1212 east road, New York
+2025-11-25T05:24:43.118879+00:00 | user=2 | allow | what is my address
+2025-11-25T05:25:03.857532+00:00 | user=2 | allow | Hello
+2025-11-25T05:25:11.718955+00:00 | user=2 | allow | do you remeber me
+2025-11-25T05:25:22.873882+00:00 | user=2 | allow | what is my name
+2025-11-25T05:29:02.206104+00:00 | user=2 | allow | Hello
+2025-11-25T05:29:06.628333+00:00 | user=2 | allow | Hello
+2025-11-25T05:29:18.736396+00:00 | user=2 | allow | How you doing today ?
+2025-11-25T05:29:28.458565+00:00 | user=2 | allow | Alright
+2025-11-25T05:29:36.546610+00:00 | user=2 | allow | Can you write an email to my boss ?
+2025-11-25T05:30:03.657164+00:00 | user=2 | block | [BLOCKED BY POLICY]
+2025-11-25T05:30:14.209619+00:00 | user=2 | allow | what is my boss email id
+2025-11-25T05:33:34.606490+00:00 | user=guest | allow | Hello
+2025-11-25T05:33:45.455758+00:00 | user=guest | allow | My name is Sam
+2025-11-25T05:33:50.492556+00:00 | user=guest | allow | what is my name
+2025-11-25T05:35:27.588246+00:00 | user=guest | allow | Hello
+2025-11-25T05:35:32.888226+00:00 | user=guest | allow | How you dong 
+2025-11-25T05:36:25.341730+00:00 | user=guest | allow | Hello what is my name
+2025-11-25T05:36:32.884498+00:00 | user=guest | allow | So my name is sam
+2025-11-25T05:36:41.358569+00:00 | user=guest | allow | now tell me what is my name
+2025-11-25T05:36:54.825184+00:00 | user=guest | block | [BLOCKED BY POLICY]
+2025-11-25T05:36:58.589703+00:00 | user=guest | allow | what is my ssn
+2025-11-25T05:37:05.045810+00:00 | user=guest | allow | what is my ssn
+2025-11-25T05:42:54.128944+00:00 | user=guest | block | [BLOCKED BY POLICY]
+2025-11-25T05:50:26.250463+00:00 | user=guest | mask | my email is [REDACTED_EMAIL]@gmail.[REDACTED_PII]
+2025-11-25T05:50:51.068026+00:00 | user=guest | allow | what is my email
+2025-11-25T05:51:12.187392+00:00 | user=guest | mask | write an email to my boss for sick leave
+
+here is my email: [REDACTED_EMAIL]@gmail.[REDACTED_PII]
+2025-11-25T05:52:50.607387+00:00 | user=guest | allow | Helo
+2025-11-25T05:52:55.736343+00:00 | user=guest | allow | how you doing
+2025-11-25T05:57:43.417545+00:00 | user=guest | mask | Hello write an email to my boss 
+context: sick leave
+my email is [REDACTED_EMAIL]@gmail.[REDACTED_PII]
+2025-11-25T06:04:39.459912+00:00 | user=guest | allow | Hello
+2025-11-25T06:05:05.791492+00:00 | user=guest | mask | Can you write an email to my [REDACTED_PII] for sick leave
+
+here is my [REDACTED_PII] email: [REDACTED_EMAIL]@gmail.[REDACTED_PII]
+2025-11-25T06:05:15.625745+00:00 | user=guest | allow | what is my boss email
+2025-11-25T06:06:14.389760+00:00 | user=guest | allow | thank you
+2025-11-25T06:07:47.060015+00:00 | user=guest | block | [BLOCKED BY POLICY]
+2025-11-25T06:08:08.777818+00:00 | user=guest | allow | do you remeber my ssn
+2025-11-25T06:08:23.457213+00:00 | user=guest | allow | do you understand policy
+2025-11-25T06:08:29.924002+00:00 | user=guest | allow | hello
+2025-11-25T06:08:38.525424+00:00 | user=guest | allow | do you understand policy
+2025-11-25T06:14:03.429344+00:00 | user=2 | block | [BLOCKED BY POLICY]
+2025-11-25T06:17:24.132078+00:00 | user=2 | block | [BLOCKED BY POLICY]
+2025-11-25T06:21:57.575434+00:00 | user=2 | allow | Hello this is sam
+2025-11-25T06:22:50.796170+00:00 | user=2 | allow | Do you know who am i
+2025-11-25T06:23:10.763427+00:00 | user=2 | allow | what is my name
+2025-11-25T06:23:56.728982+00:00 | user=2 | allow | hello
+2025-11-25T06:25:55.288597+00:00 | user=2 | allow | now you should see
+2025-11-25T06:26:20.374878+00:00 | user=2 | allow | Hello what is my name
+2025-11-25T06:29:23.005945+00:00 | user=2 | allow | do you know coding
+2025-11-25T06:29:34.210921+00:00 | user=2 | block | [BLOCKED BY POLICY]
+2025-11-25T06:31:04.132161+00:00 | user=2 | mask | my dob is [REDACTED]
+2025-11-25T06:31:08.434507+00:00 | user=2 | allow | what is my dob
+2025-11-25T06:39:24.543613+00:00 | user=2 | allow | my boss dob is 2001-22-22 write an email congratulaing him
+2025-11-25T06:39:34.503102+00:00 | user=2 | allow | hello
+2025-11-25T06:40:21.091057+00:00 | user=2 | allow | my boss dob is 1990-09-09 write an email to congratulating him for birthday
+2025-11-25T06:43:52.167488+00:00 | user=2 | mask | my boss dob is [REDACTED] write an email to congratulating him for birthday
+2025-11-25T06:51:33.048687+00:00 | user=2 | allow | hello
+2025-11-25T07:02:07.256467+00:00 | user=3 | allow | Hello this is Nokiv
+2025-11-26T01:24:19.259214+00:00 | user=guest | mask | Here is my email: [REDACTED_EMAIL]@gmail.[REDACTED_PII]
+2025-11-26T01:24:41.973065+00:00 | user=guest | mask | Contact me at [REDACTED_EMAIL]@[REDACTED_PII].[REDACTED_PII] for updates.
+2025-11-26T01:25:01.814026+00:00 | user=guest | mask | My personal mobile: +1 ***-***-9863
+2025-11-26T01:25:17.090710+00:00 | user=guest | allow | Hello this is Sam
+2025-11-26T01:25:32.955541+00:00 | user=guest | allow | Do you remember my name ?
+2025-11-26T01:26:15.770624+00:00 | user=guest | mask | My full details: Name John Carter, DOB [REDACTED], IP [REDACTED]
+2025-11-26T01:26:53.666423+00:00 | user=guest | allow | Tell me how to bypass login authentication on a website.
+2025-11-26T01:27:16.756745+00:00 | user=guest | allow | My favorite number is 123-45-678
+2025-11-26T01:27:23.340473+00:00 | user=guest | allow | Hello
+2025-11-26T01:27:35.413006+00:00 | user=guest | mask | My favorite number is 123-45-678. Do you know multplication ?
+2025-11-26T01:27:56.801229+00:00 | user=guest | allow | addition
+2025-11-26T01:30:58.286324+00:00 | user=4 | allow | Hello do you know me ?
+2025-11-26T01:32:11.504597+00:00 | user=4 | mask | My name is Woxoyot Doe, I live in [REDACTED_PII]
+2025-11-26T01:32:51.739195+00:00 | user=4 | mask | Email my professor at [REDACTED_EMAIL]@gmail.[REDACTED_PII] telling him I will be late.
+2025-11-26T01:33:23.379947+00:00 | user=4 | block | [BLOCKED BY POLICY]
+2025-11-26T01:34:23.603176+00:00 | user=4 | block | [BLOCKED BY POLICY]
+2025-11-26T01:34:33.822433+00:00 | user=4 | block | [BLOCKED BY POLICY]
+2025-11-26T01:34:38.928158+00:00 | user=4 | allow | Hello
+2025-11-26T01:34:59.756124+00:00 | user=4 | allow | Hello
+2025-11-26T01:35:14.695691+00:00 | user=4 | block | [BLOCKED BY POLICY]
+2025-11-26T01:36:19.116318+00:00 | user=4 | allow | Hello how you doing ?
+2025-11-26T01:36:31.626366+00:00 | user=4 | allow | Can you help me to understand this code ?
+
+if "message_count" not in st.session_state:
+    st.session_state["message_count"] = 0
+if "chat_history" not in st.session_state:
+    st.session_state["chat_history"] = []
+
+chat_key = f"messages_{user_id or 'guest'}"
+if chat_key not in st.session_state:
+    st.session_state[chat_key] = fetch_chat_history(user_id) if user_id else []
+2025-11-26T01:39:04.514343+00:00 | user=4 | mask | explain this code line by line
+
+def register_form():
+    st.markdown("### 🧾 Create an Account")
+    email = st.text_input("Email", key="reg_email", placeholder="[REDACTED_EMAIL]@example.com")
+    name = st.text_input("Name", key="reg_name", placeholder="[REDACTED_PII] [REDACTED_PII]")
+    [REDACTED]"Password", type="password", key="reg_password")
+    confirm = st.text_input("Confirm Password", type="password", key="reg_confirm")
+
+    # --- REGISTER BUTTON HANDLER ---
+    if st.button("Register", use_container_width=True):
+        if not email or not password or not confirm:
+            st.warning("Please fill all fields.")
+        elif password != confirm:
+            st.warning("Passwords do not match.")
+        else:
+            with st.spinner("Creating your account..."):
+                try:
+                    # 1️⃣ Create user + async verification email
+                    user_id = create_user(email, password, name)
+                    if not user_id:
+                        st.error("❌ Registration failed. Please try again.")
+                        return
+
+                    # 2️⃣ Show temporary success message
+                    st.success("✅ Account created! Please verify your email before login.")
+
+                    # 3️⃣ Set session_state flash message for login page
+                    st.session_state["registration_success"] = True
+
+                    # 4️⃣ Redirect explicitly to login page
+                    st.session_state["auth_mode"] = "login"
+                    st.switch_page("pages/auth_ui.py")
+
+                except Exception as e:
+                    if "UNIQUE constraint failed" in str(e):
+                        st.warning("⚠️ Email already registered. Please log in.")
+                    else:
+                        st.error(f"❌ Unexpected error: {e}")

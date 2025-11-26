@@ -1,47 +1,28 @@
-# Data handling
-pandas
+# ML & Data
 numpy==1.26.4
-
-# Synthetic data generation
-faker
-
-# NLP & ML
+pandas
 scikit-learn
+xgboost
+torch>=2.2.0
+seaborn
+matplotlib
+imbalanced-learn
+
+# NLP
 spacy
 nltk
-
-# Deep learning
-torch>=2.2.0
 transformers>=4.36.0
 datasets
 seqeval
+faker
 
 # API / Middleware
 fastapi
-uvicorn
-
-# Utilities
-regex
-tqdm
-
-# Finance / Data sourcing
-sec-edgar-downloader
-
-
-python-dotenv
-tqdm
-openpyxl
-xgboost
-seaborn
-matplotlib
-sns
-imbalanced-learn
-fastapi
 uvicorn[standard]
+python-dotenv
 
+# Streamlit & extras
 streamlit
-openai
-requests
 streamlit-cookies-manager
 streamlit-extras
 streamlit-option-menu
@@ -50,6 +31,10 @@ streamlit-shadcn-ui
 streamlit-lottie
 streamlit-mui
 hydralit_components
-streamlit_elements
+streamlit-elements
 streamlit-aggrid
-streamlit-shadcn-ui
+groq
+
+flask==3.0.3
+prometheus-client==0.20.0
+requests==2.32.3

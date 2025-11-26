@@ -265,10 +265,57 @@ def detect_secret(text: str):
 #         return "mask"
 #     return "allow"
 
+# def decide_policy(regex_matches, secret_pred, pii_labeled, ml_pred):
+#     """
+#     Decide final compliance action (block / mask / allow)
+#     using regex category, severity, ML classifier, and PII policy.
+#     """
+
+#     # --- Regex-based findings ---
+#     block_found = any(
+#         f.name in BLOCK_CATEGORIES
+#         or f.category == "Secret"
+#         or f.severity in {"critical", "high"}
+#         for f in regex_matches
+#     )
+
+#     mask_found = any(
+#         f.name in MASK_CATEGORIES
+#         or f.category == "PII"
+#         or (f.category == "Network" and f.severity in {"medium"})
+#         for f in regex_matches
+#     )
+
+#     # --- ML / Secret classifier flags ---
+#     secret_flag = secret_pred.get("is_secret", False)
+#     ml_flag = ml_pred.get("label", "safe") == "unsafe"
+
+#     # --- PII Entity Policies (from NER labels) ---
+#     pii_mask_flag = any(
+#         any(key in label["label"].upper() and PII_POLICY.get(key) == "mask"
+#             for key in PII_POLICY.keys())
+#         for label in pii_labeled
+#     )
+
+#     pii_block_flag = any(
+#         any(key in label["label"].upper() and PII_POLICY.get(key) == "block"
+#             for key in PII_POLICY.keys())
+#         for label in pii_labeled
+#     )
+
+#     # --- Decision priority ---
+#     if block_found or secret_flag or ml_flag or pii_block_flag:
+#         return "block"
+#     if mask_found or pii_mask_flag:
+#         return "mask"
+#     return "allow"
+
+
+
 def decide_policy(regex_matches, secret_pred, pii_labeled, ml_pred):
     """
     Decide final compliance action (block / mask / allow)
-    using regex category, severity, ML classifier, and PII policy.
+    using regex category, ML classifier, secret detector, and NER labels.
     """
 
     # --- Regex-based findings ---
@@ -290,7 +337,7 @@ def decide_policy(regex_matches, secret_pred, pii_labeled, ml_pred):
     secret_flag = secret_pred.get("is_secret", False)
     ml_flag = ml_pred.get("label", "safe") == "unsafe"
 
-    # --- PII Entity Policies (from NER labels) ---
+    # --- PII Entity Policies (NER labels) ---
     pii_mask_flag = any(
         any(key in label["label"].upper() and PII_POLICY.get(key) == "mask"
             for key in PII_POLICY.keys())
@@ -303,11 +350,34 @@ def decide_policy(regex_matches, secret_pred, pii_labeled, ml_pred):
         for label in pii_labeled
     )
 
-    # --- Decision priority ---
+    # ======================================================
+    # EMAIL OVERRIDE FIX — Mask always wins for any email PII
+    # Prevents ML, secret_block, or regex miscategorizations
+    # ======================================================
+    email_hit = (
+        any("email address" in f.name.lower() or f.name.lower() == "email"
+            for f in regex_matches)
+        or any(lbl["label"].upper().endswith("EMAIL") for lbl in pii_labeled)
+    )
+
+    if email_hit:
+        return "mask"
+
+    # ======================================================
+    # BLOCK-LEVEL CHECKS (AFTER EMAIL OVERRIDE)
+    # ======================================================
     if block_found or secret_flag or ml_flag or pii_block_flag:
         return "block"
+
+    # ======================================================
+    # MASK RULES
+    # ======================================================
     if mask_found or pii_mask_flag:
         return "mask"
+
+    # ======================================================
+    # ALLOW
+    # ======================================================
     return "allow"
 
 # ==========================================================
@@ -338,6 +408,7 @@ def analyze_text(text: str):
         "pii_labels": pii_labeled,
         "action": action,
         "sources": ["regex", "bert_secret_clf_v2", "pii_ner_v3", ml_pred["model"]],
+       
     }
 
 # ==========================================================
