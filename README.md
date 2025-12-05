@@ -1,42 +1,71 @@
 # AI-Driven-Compliance-Guardian
-This project aims to address the business issue by creating a runtime middleware system that acts as a compliance firewall between users and LLMS. 
+
+This project aims to address the business issue by creating a runtime middleware system that acts as a compliance firewall between users and LLMs.
+
+## Project Architecture
+
+```text
++-----------------------+
+|    Streamlit UI       |
+|  (User Chat Frontend) |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|   FastAPI Middleware  |
+|   Compliance Gateway  |
++-----------+-----------+
+            |
+            v
++-----------------------+     +----------------------+
+|  Compliance Pipeline  | --> |   YAML Policy Engine |
+|  Regex + NER + ML     |     |  (block/mask/allow)  |
++-----------+-----------+     +----------------------+
+            |
+            v
++-----------------------+
+|   LLM (OpenAI/Groq)   |
++-----------------------+
+```
 
 ## Setup Environment
-Create Python environment -  python3 -m venv compliance_guardian_env
-Activate python environment - source/compliance_guardian_env/bin/activate
 
-# Install all dependencies
-Run requirements.txt - pip3 install -r requirements.txt
+## Setup Environment for Mac
+### 1. Create environment
+    python -m venv compliance_guardian_env
 
-## Install database
-If you are in mac 
-brew install sqlcipher
+### 2. Activate environment
+    source compliance_guardian_env/bin/activate
 
-## Run api
-sudo uvicorn app.api.guardian_api:app --reload
+### 3. Install Database
+    brew install sqlcipher
 
+## Setup Environment for Windows
+### 1. Create environment
+    python -m venv compliance_guardian_env
 
-#### Run streamlit
-streamlit run app/streamlit/app.py
+### 2. Activate environment
+    .compliance_guardian_env\Scripts\activate
 
-##### Note:
-Adim user: wehadi4324@bipochub.com
-Password: wehadi4324@bipochub.com
+### 3. Install Database
+    pip install pysqlcipher3
 
-User: nokiv37278@feralrex.com
-password: nokiv37278@feralrex.com
+## Run Application
+### 1. Start API
+#### Run command from root folder
+    sudo uvicorn app.api.guardian_api:app --reload
 
+### 2. Start Streamlit Application
+#### Run the command from root folder
+    streamlit run app/streamlit/app.py
 
-##### Run with docker
+## Open application in browser
+    http://localhost:8501/
 
-docker build -t compliance-guardian:latest .
-docker run -p 8501:8501 -p 8000:8000 --env-file .env compliance-guardian:latest
+## Use the following Credentials to login into Application
 
-
-# Build Docker image
-docker build -t compliance-guardian:latest .
-docker run -p 8501:8501 -p 8000:8000 --env-file .env compliance-guardian:latest
-
-### If Docker locked
-security unlock-keychain ~/Library/Keychains/login.keychain-db
+| Role | Username / Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `wehadi4324@bipochub.com` | `wehadi4324@bipochub.com` |
+| **User** | `nokiv37278@feralrex.com` | `nokiv37278@feralrex.com` |
 
