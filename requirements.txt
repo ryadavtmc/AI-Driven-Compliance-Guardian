@@ -1,0 +1,40 @@
+# ML & Data
+numpy==1.26.4
+pandas
+scikit-learn
+xgboost
+torch>=2.2.0
+seaborn
+matplotlib
+imbalanced-learn
+
+# NLP
+spacy
+nltk
+transformers>=4.36.0
+datasets
+seqeval
+faker
+
+# API / Middleware
+fastapi
+uvicorn[standard]
+python-dotenv
+
+# Streamlit & extras
+streamlit
+streamlit-cookies-manager
+streamlit-extras
+streamlit-option-menu
+streamlit-router
+streamlit-shadcn-ui
+streamlit-lottie
+streamlit-mui
+hydralit_components
+streamlit-elements
+streamlit-aggrid
+groq
+
+flask==3.0.3
+prometheus-client==0.20.0
+requests==2.32.3

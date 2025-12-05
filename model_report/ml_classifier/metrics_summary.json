@@ -1,0 +1,9 @@
+{
+  "accuracy": 1.0,
+  "f1_weighted": 1.0,
+  "precision_recall_f1_report": " precision    recall  f1-score   support\n\n        safe     1.0000    1.0000    1.0000      2533\n      unsafe     1.0000    1.0000    1.0000      2467\n\n    accuracy                         1.0000      5000\n   macro avg     1.0000    1.0000    1.0000      5000\nweighted avg     1.0000    1.0000    1.0000      5000\n",
+  "roc_auc": 1.0,
+  "pr_auc": 1.0,
+  "brier_score": 0.012655444903519202,
+  "log_loss": 0.1048291707043933
+}

@@ -1,0 +1,8 @@
+{
+  "accuracy": 0.9984202211690363,
+  "f1_weighted": 0.998402497509901,
+  "roc_auc": 0.99985121261717,
+  "pr_auc": 0.996212121212121,
+  "support_secret": 22,
+  "support_non_secret": 611
+}

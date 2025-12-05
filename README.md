@@ -1,2 +1,71 @@
 # AI-Driven-Compliance-Guardian
-This project aims to address the business issue by creating a runtime middleware system that acts as a compliance firewall between users and LLMS. 
+
+This project aims to address the business issue by creating a runtime middleware system that acts as a compliance firewall between users and LLMs.
+
+## Project Architecture
+
+```text
++-----------------------+
+|    Streamlit UI       |
+|  (User Chat Frontend) |
++-----------+-----------+
+            |
+            v
++-----------------------+
+|   FastAPI Middleware  |
+|   Compliance Gateway  |
++-----------+-----------+
+            |
+            v
++-----------------------+     +----------------------+
+|  Compliance Pipeline  | --> |   YAML Policy Engine |
+|  Regex + NER + ML     |     |  (block/mask/allow)  |
++-----------+-----------+     +----------------------+
+            |
+            v
++-----------------------+
+|   LLM (OpenAI/Groq)   |
++-----------------------+
+```
+
+## Setup Environment
+
+## Setup Environment for Mac
+### 1. Create environment
+    python -m venv compliance_guardian_env
+
+### 2. Activate environment
+    source compliance_guardian_env/bin/activate
+
+### 3. Install Database
+    brew install sqlcipher
+
+## Setup Environment for Windows
+### 1. Create environment
+    python -m venv compliance_guardian_env
+
+### 2. Activate environment
+    .compliance_guardian_env\Scripts\activate
+
+### 3. Install Database
+    pip install pysqlcipher3
+
+## Run Application
+### 1. Start API
+#### Run command from root folder
+    sudo uvicorn app.api.guardian_api:app --reload
+
+### 2. Start Streamlit Application
+#### Run the command from root folder
+    streamlit run app/streamlit/app.py
+
+## Open application in browser
+    http://localhost:8501/
+
+## Use the following Credentials to login into Application
+
+| Role | Username / Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `wehadi4324@bipochub.com` | `wehadi4324@bipochub.com` |
+| **User** | `nokiv37278@feralrex.com` | `nokiv37278@feralrex.com` |
+
