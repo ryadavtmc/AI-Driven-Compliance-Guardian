@@ -40,6 +40,9 @@ This project aims to address the business issue by creating a runtime middleware
 ### 3. Install Database
     brew install sqlcipher
 
+### 4. Install requirements.txt
+    pip3 install -r requirements.txt
+
 ## Setup Environment for Windows
 ### 1. Create environment
     python -m venv compliance_guardian_env
@@ -48,7 +51,10 @@ This project aims to address the business issue by creating a runtime middleware
     .compliance_guardian_env\Scripts\activate
 
 ### 3. Install Database
-    pip install pysqlcipher3
+    pip install sqlcipher3-wheels
+
+### 4. Install requirements.txt
+    pip install -r requirements.txt
 
 ## Run Application
 ### 1. Start API
