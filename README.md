@@ -48,7 +48,7 @@ This project aims to address the business issue by creating a runtime middleware
     python -m venv compliance_guardian_env
 
 ### 2. Activate environment
-    .compliance_guardian_env\Scripts\activate
+    compliance_guardian_env\Scripts\activate
 
 ### 3. Install Database
     pip install sqlcipher3-wheels
@@ -78,4 +78,15 @@ This project aims to address the business issue by creating a runtime middleware
 | :--- | :--- | :--- |
 | **Admin** | `wehadi4324@bipochub.com` | `wehadi4324@bipochub.com` |
 | **User** | `nokiv37278@feralrex.com` | `nokiv37278@feralrex.com` |
+
+
+## Application Run analysis Mac Vs Windows
+
+### Running on Mac mini (16 GB Memory)
+
+### Performance was smooth, and the application responded quickly as expected.
+
+### Running on Windows
+
+### The application worked correctly but showed slightly slower response times compared to macOS.
 
