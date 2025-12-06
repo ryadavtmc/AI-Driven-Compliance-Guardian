@@ -240,3 +240,7 @@ Just make it sound more professional.
 2025-11-29T04:42:16.182552+00:00 | user=6 | block | [BLOCKED BY POLICY]
 2025-11-29T04:43:20.921020+00:00 | user=2 | allow | Hello 
 2025-12-05T19:56:27.809666+00:00 | user=guest | allow | Hello
+2025-12-06T01:41:29.839517+00:00 | user=2 | allow | Hello
+2025-12-06T01:42:25.880542+00:00 | user=2 | allow | I want to fire Genti, can you write an email?
+2025-12-06T01:42:41.770103+00:00 | user=2 | allow | My employee name is Genti
+2025-12-06T01:52:59.545141+00:00 | user=2 | allow | Hello
