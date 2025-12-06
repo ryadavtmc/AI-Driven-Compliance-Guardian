@@ -57,12 +57,16 @@ This project aims to address the business issue by creating a runtime middleware
     pip install -r requirements.txt
 
 ## Run Application
-### 1. Start API
+### 1. Start API in Mac
 #### Run command from root folder
     sudo uvicorn app.api.guardian_api:app --reload
 
+### 1.1 Start API in Windows
+#### Run command from root folder
+    uvicorn app.api.guardian_api:app --reload
+
 ### 2. Start Streamlit Application
-#### Run the command from root folder
+#### Open new terminal Run the command from root folder
     streamlit run app/streamlit/app.py
 
 ## Open application in browser
